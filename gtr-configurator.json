@@ -1,0 +1,144 @@
+{
+  "structure": [
+    {
+      "order": 1,
+      "category_id": "top-wood",
+      "sheet_name": "data_wood",
+      "label_us": "Top Wood",
+      "z_index": 10,
+      "is_dependent": false
+    },
+    {
+      "order": 2,
+      "category_id": "color",
+      "sheet_name": "data_color",
+      "label_us": "Color",
+      "z_index": 20,
+      "is_dependent": true
+    },
+    {
+      "order": 3,
+      "category_id": "pickup",
+      "sheet_name": "data_pickup",
+      "label_us": "Pickup",
+      "z_index": 30,
+      "is_dependent": false
+    },
+    {
+      "order": 4,
+      "category_id": "rings",
+      "sheet_name": "data_rings",
+      "label_us": "Pickup Rings",
+      "z_index": 40,
+      "is_dependent": false
+    },
+    {
+      "order": 5,
+      "category_id": "knobs",
+      "sheet_name": "data_knobs",
+      "label_us": "Knobs",
+      "z_index": 50,
+      "is_dependent": false
+    },
+    {
+      "order": 6,
+      "category_id": "hardware",
+      "sheet_name": "data_hardware",
+      "label_us": "Hardware",
+      "z_index": 60,
+      "is_dependent": false
+    }
+  ],
+  "data_wood": [
+    {
+      "item_id": "wood-maple",
+      "label_us": "Maple",
+      "price": 0,
+      "image": "image/wood-maple.webp"
+    },
+    {
+      "item_id": "wood-walnut",
+      "label_us": "Walnut",
+      "price": 0,
+      "image": "image/wood-walnut.webp"
+    }
+  ],
+  "data_color": [
+    {
+      "item_id": "color-black",
+      "label_us": "Black",
+      "price": 0,
+      "image": "image/color-black.webp",
+      "depends_on": "wood-maple"
+    },
+    {
+      "item_id": "color-brown",
+      "label_us": "Brown",
+      "price": 0,
+      "image": "image/color-brown.webp",
+      "depends_on": "wood-walnut"
+    }
+  ],
+  "data_pickup": [
+    {
+      "item_id": "pickup-humbucker",
+      "label_us": "Humbucker",
+      "price": 0,
+      "image": "image/pickup-humbucker.webp"
+    },
+    {
+      "item_id": "pickup-singlecoil",
+      "label_us": "Single Coil",
+      "price": 0,
+      "image": "image/pickup-singlecoil.webp"
+    }
+  ],
+  "data_rings": [
+    {
+      "item_id": "ring-black",
+      "label_us": "Black",
+      "price": 0,
+      "image": "image/rings-black.webp"
+    },
+    {
+      "item_id": "ring-cream",
+      "label_us": "Cream",
+      "price": 0,
+      "image": "image/rings-cream.webp"
+    }
+  ],
+  "data_hardware": [
+    {
+      "item_id": "hw-chrome",
+      "label_us": "Chrome",
+      "price": 0,
+      "image": "image/hardware-chrome.webp"
+    },
+    {
+      "item_id": "hw-gold",
+      "label_us": "Gold",
+      "price": 0,
+      "image": "image/hardware-gold.webp"
+    }
+  ],
+  "data_knobs": [
+    {
+      "item_id": "knob-amber",
+      "label_us": "Amber",
+      "price": 0,
+      "image": "image/knobs-amber.webp"
+    },
+    {
+      "item_id": "knob-black",
+      "label_us": "Black",
+      "price": 0,
+      "image": "image/knobs-black.webp"
+    },
+    {
+      "item_id": "knob-gold",
+      "label_us": "Gold",
+      "price": 0,
+      "image": "image/knobs-gold.webp"
+    }
+  ]
+}
