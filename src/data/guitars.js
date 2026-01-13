@@ -1,7 +1,8 @@
 import gtrConfig from '../../gtr-configurator.json';
 
-export const BASE_PRICE = 0;
 export const guitarData = gtrConfig;
+export const BASE_PRICE = gtrConfig.base_price || 0;
+export const BASE_MODEL = gtrConfig.base_model || { label: 'Base Model', name: 'Guitar Body' };
 
 // Helper to resolve image path based on state
 export const getGuitarLayers = (state) => {

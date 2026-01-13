@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect, useState } from 'react';
-import { defaultState, getGuitarLayers, guitarData, BASE_PRICE } from './data/guitars';
+import { defaultState, getGuitarLayers, guitarData, BASE_PRICE, BASE_MODEL } from './data/guitars';
 import { getConfigurationFromUrl, updateUrlFromConfiguration } from './utils/urlConfig';
 import GuitarPreview from './components/GuitarPreview';
 import Configurator from './components/Configurator';
@@ -27,6 +27,7 @@ function App() {
 
   const [isCopied, setIsCopied] = useState(false);
   const [showQuoteModal, setShowQuoteModal] = useState(false);
+  const [email, setEmail] = useState('');
 
   const calculateTotal = () => {
     let total = BASE_PRICE;
@@ -43,7 +44,7 @@ function App() {
   };
 
   const getSelectedItems = () => {
-    const items = [{ label: 'Base Model', name: 'Guitar Body', price: BASE_PRICE }];
+    const items = [{ label: BASE_MODEL.label, name: BASE_MODEL.name, price: BASE_PRICE }];
 
     guitarData.structure.forEach(cat => {
       const selectedId = state[cat.category_id];
@@ -144,9 +145,10 @@ function App() {
             className="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity animate-in fade-in"
             onClick={() => setShowQuoteModal(false)}
           />
-          <div className="relative bg-slate-900 border border-white/20 rounded-[32px] w-full max-w-2xl overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-300">
-            <div className="p-8">
-              <div className="flex justify-between items-center mb-8">
+          <div className="relative bg-slate-900 border border-white/20 rounded-[32px] w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-300">
+            {/* Header */}
+            <div className="p-8 pb-4 shrink-0">
+              <div className="flex justify-between items-center">
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                   Order Summary
                 </h2>
@@ -157,34 +159,66 @@ function App() {
                   ✕
                 </button>
               </div>
+            </div>
 
-              <div className="bg-white/5 rounded-2xl overflow-hidden border border-white/10 mb-8">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="border-b border-white/10 bg-white/5">
-                      <th className="px-6 py-4 text-xs uppercase tracking-widest text-gray-400 font-bold">Category</th>
-                      <th className="px-6 py-4 text-xs uppercase tracking-widest text-gray-400 font-bold">Selection</th>
-                      <th className="px-6 py-4 text-xs uppercase tracking-widest text-gray-400 font-bold text-right">Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {getSelectedItems().map((item, idx) => (
-                      <tr key={idx} className="border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors">
-                        <td className="px-6 py-4 text-sm text-gray-400">{item.label}</td>
-                        <td className="px-6 py-4 text-sm font-medium text-white">{item.name}</td>
-                        <td className="px-6 py-4 text-sm font-mono text-right text-gray-300">
-                          {item.price > 0 ? `+${item.price} €` : (item.price === 0 ? 'Inc.' : `${item.price} €`)}
-                        </td>
+            {/* Scrollable Content area */}
+            <div className="px-8 flex-1 min-h-0 flex flex-col mb-4">
+              <div className="bg-white/5 rounded-2xl border border-white/10 flex flex-col overflow-hidden h-full">
+                {/* Fixed Header */}
+                <div className="bg-slate-900/50 backdrop-blur-md border-b border-white/10 shrink-0">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr>
+                        <th className="px-6 py-4 text-xs uppercase tracking-widest text-gray-400 font-bold w-1/3">Category</th>
+                        <th className="px-6 py-4 text-xs uppercase tracking-widest text-gray-400 font-bold w-1/2">Selection</th>
+                        <th className="px-6 py-4 text-xs uppercase tracking-widest text-gray-400 font-bold text-right">Price</th>
                       </tr>
-                    ))}
-                    <tr className="bg-blue-600/10">
-                      <td colSpan="2" className="px-6 py-6 text-lg font-bold text-white">Total Estimated Price</td>
-                      <td className="px-6 py-6 text-2xl font-black text-blue-400 text-right">
-                        {calculateTotal().toLocaleString()} €
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                    </thead>
+                  </table>
+                </div>
+
+                {/* Scrollable Body */}
+                <div className="flex-1 overflow-y-auto scrollbar-hide">
+                  <table className="w-full text-left border-collapse">
+                    <tbody className="divide-y divide-white/5">
+                      {getSelectedItems().map((item, idx) => (
+                        <tr key={idx} className="hover:bg-white/5 transition-colors">
+                          <td className="px-6 py-4 text-sm text-gray-400 w-1/3">{item.label}</td>
+                          <td className="px-6 py-4 text-sm font-medium text-white w-1/2">{item.name}</td>
+                          <td className="px-6 py-4 text-sm font-mono text-right text-gray-300">
+                            {item.price > 0 ? `+${item.price} €` : (item.price === 0 ? 'Inc.' : `${item.price} €`)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Fixed Total */}
+                <div className="bg-blue-600/10 border-t border-white/10 shrink-0 px-6 py-6 flex justify-between items-center">
+                  <span className="text-lg font-bold text-white">Total Estimated Price</span>
+                  <span className="text-2xl font-black text-blue-400">
+                    {calculateTotal().toLocaleString()} €
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-8 pt-4 shrink-0 border-t border-white/5 bg-slate-900/50 backdrop-blur-sm">
+              <div className="mb-6">
+                <label htmlFor="email" className="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-3">
+                  Your Email / Kontakt
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 transition-colors"
+                  required
+                />
               </div>
 
               <div className="flex gap-4">
@@ -196,7 +230,15 @@ function App() {
                 </button>
                 <button
                   onClick={() => {
-                    alert('Quote request sent successfully!');
+                    if (!email) {
+                      alert('Please enter your email address.');
+                      return;
+                    }
+                    if (!email.includes('@')) {
+                      alert('Please enter a valid email address.');
+                      return;
+                    }
+                    alert(`Quote request sent successfully to ${email}!`);
                     setShowQuoteModal(false);
                   }}
                   className="flex-[2] py-4 px-6 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/20 active:scale-[0.98]"

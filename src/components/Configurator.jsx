@@ -76,16 +76,32 @@ const Configurator = ({ state, dispatch, onShare, isCopied, calculateTotal, setS
                             }
                         >
                             {isColor ? (
-                                <img
-                                    src={`${import.meta.env.BASE_URL}${item.color_thumbnail || item.image}`}
-                                    alt={item.label_us}
-                                    className="w-full h-full object-cover"
-                                    onError={(e) => {
-                                        e.target.style.display = 'none';
-                                        e.target.parentElement.style.backgroundColor = '#1e293b';
-                                    }}
-                                />
-                            ) : item.label_us}
+                                <>
+                                    <img
+                                        src={`${import.meta.env.BASE_URL}${item.color_thumbnail || item.image}`}
+                                        alt={item.label_us}
+                                        className="w-full h-full object-cover"
+                                        onError={(e) => {
+                                            e.target.style.display = 'none';
+                                            e.target.parentElement.style.backgroundColor = '#1e293b';
+                                        }}
+                                    />
+                                    {item.price > 0 && (
+                                        <div className="absolute bottom-1 right-1 bg-blue-600 px-1.5 py-0.5 rounded text-[9px] font-black text-white shadow-lg pointer-events-none">
+                                            +{item.price} €
+                                        </div>
+                                    )}
+                                </>
+                            ) : (
+                                <div className="flex flex-col items-center justify-center h-full">
+                                    <span>{item.label_us}</span>
+                                    {item.price > 0 && (
+                                        <span className={`text-[10px] font-bold mt-0.5 ${state[categoryId] === item.item_id ? 'text-white' : 'text-blue-400'}`}>
+                                            +{item.price} €
+                                        </span>
+                                    )}
+                                </div>
+                            )}
                             {isColor && <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />}
                         </button>
                     ))}

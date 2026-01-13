@@ -1,4 +1,9 @@
 {
+  "base_price": 3000,
+  "base_model": {
+    "label": "Base Model",
+    "name": "Guitar Series GTR"
+  },
   "structure": [
     {
       "order": 1,
@@ -54,19 +59,19 @@
     {
       "item_id": "wood-solid",
       "label_us": "Solid Color",
-      "price": 3000,
+      "price": 0,
       "image": "images/top-solid.webp"
     },
     {
       "item_id": "wood-flamed",
       "label_us": "Flamed Maple",
-      "price": 3100,
+      "price": 300,
       "image": "images/top-flamed.webp"
     },
     {
       "item_id": "wood-quilted",
       "label_us": "Quilted Maple",
-      "price": 3100,
+      "price": 500,
       "image": "images/top-quilted.webp"
     }
   ],
