@@ -1,340 +1,340 @@
 {
-    "structure": [
-        {
-            "order": 1,
-            "category_id": "top-wood",
-            "sheet_name": "data_wood",
-            "label_us": "Top Wood",
-            "z_index": 10,
-            "is_dependent": false
-        },
-        {
-            "order": 2,
-            "category_id": "color",
-            "sheet_name": "data_color",
-            "label_us": "Color",
-            "z_index": 20,
-            "is_dependent": true
-        },
-        {
-            "order": 3,
-            "category_id": "pickup",
-            "sheet_name": "data_pickup",
-            "label_us": "Pickup",
-            "z_index": 30,
-            "is_dependent": false
-        },
-        {
-            "order": 4,
-            "category_id": "rings",
-            "sheet_name": "data_rings",
-            "label_us": "Pickup Rings",
-            "z_index": 40,
-            "is_dependent": false
-        },
-        {
-            "order": 5,
-            "category_id": "knobs",
-            "sheet_name": "data_knobs",
-            "label_us": "Knobs",
-            "z_index": 50,
-            "is_dependent": false
-        },
-        {
-            "order": 6,
-            "category_id": "hardware",
-            "sheet_name": "data_hardware",
-            "label_us": "Hardware",
-            "z_index": 60,
-            "is_dependent": false
-        }
-    ],
-    "data_wood": [
-        {
-            "item_id": "wood-solid",
-            "label_us": "Solid Color",
-            "price": 3000,
-            "image": "image/top-solid.webp"
-        },
-        {
-            "item_id": "wood-flamed",
-            "label_us": "Flamed Maple",
-            "price": 3100,
-            "image": "image/top-flamed.webp"
-        },
-        {
-            "item_id": "wood-quilted",
-            "label_us": "Quilted Maple",
-            "price": 3100,
-            "image": "image/top-quilted.webp"
-        }
-    ],
-    "data_color": [
-        {
-            "item_id": "col-sol-sapphire",
-            "label_us": "Sapphire Black Metallic",
-            "price": 0,
-            "image": "image/solid-black.webp",
-            "color_thumbnail": "image/t-solid-black.webp",
-            "depends_on": "wood-solid"
-        },
-        {
-            "item_id": "col-sol-apple",
-            "label_us": "Apple Bomb",
-            "price": 0,
-            "image": "image/solid-apple.webp",
-            "color_thumbnail": "image/t-solid-apple.webp",
-            "depends_on": "wood-solid"
-        },
-        {
-            "item_id": "col-sol-blacksp",
-            "label_us": "Black Sparkle",
-            "price": 0,
-            "image": "image/solid-black-sparkle.webp",
-            "color_thumbnail": "image/t-solid-black-sparkle.webp",
-            "depends_on": "wood-solid"
-        },
-        {
-            "item_id": "col-sol-midori",
-            "label_us": "Midori Gold",
-            "price": 0,
-            "image": "image/solid-midori.webp",
-            "color_thumbnail": "image/t-solid-midori.webp",
-            "depends_on": "wood-solid"
-        },
-        {
-            "item_id": "col-sol-ghost",
-            "label_us": "Ghost Flame",
-            "price": 200,
-            "image": "image/solid-ghost.webp",
-            "color_thumbnail": "image/t-solid-ghost.webp",
-            "depends_on": "wood-solid"
-        },
-        {
-            "item_id": "col-sol-hell",
-            "label_us": "Hellfire",
-            "price": 200,
-            "image": "image/solid-hellfire.webp",
-            "color_thumbnail": "image/t-solid-hellfire.webp",
-            "depends_on": "wood-solid"
-        },
-        {
-            "item_id": "col-sol-psych",
-            "label_us": "Psychedelic Flame",
-            "price": 200,
-            "image": "image/solid-psychedelic.webp",
-            "color_thumbnail": "image/t-solid-psychedelic.webp",
-            "depends_on": "wood-solid"
-        },
-        {
-            "item_id": "col-sol-jaw",
-            "label_us": "Jawbreaker",
-            "price": 200,
-            "image": "image/solid-jawbreaker.webp",
-            "color_thumbnail": "image/t-solid-jawbreaker.webp",
-            "depends_on": "wood-solid"
-        },
-        {
-            "item_id": "col-flm-aqua",
-            "label_us": "Aqua Marine Sunburst",
-            "price": 0,
-            "image": "image/flamed-aqua.webp",
-            "color_thumbnail": "image/t-flamed-aqua.webp",
-            "depends_on": "wood-flamed"
-        },
-        {
-            "item_id": "col-flm-blue",
-            "label_us": "Blue Moon",
-            "price": 0,
-            "image": "image/flamed-blue-moon.webp",
-            "color_thumbnail": "image/t-flamed-blue-moon.webp",
-            "depends_on": "wood-flamed"
-        },
-        {
-            "item_id": "col-flm-cran",
-            "label_us": "Cranberry Sunburst",
-            "price": 0,
-            "image": "image/flamed-cranberry.webp",
-            "color_thumbnail": "image/t-flamed-cranberry.webp",
-            "depends_on": "wood-flamed"
-        },
-        {
-            "item_id": "col-flm-lime",
-            "label_us": "Dark Lime Sunburst",
-            "price": 0,
-            "image": "image/flamed-lime.webp",
-            "color_thumbnail": "image/t-flamed-lime.webp",
-            "depends_on": "wood-flamed"
-        },
-        {
-            "item_id": "col-flm-purple",
-            "label_us": "Dark Purple Sunburst",
-            "price": 0,
-            "image": "image/flamed-purple.webp",
-            "color_thumbnail": "image/t-flamed-purple.webp",
-            "depends_on": "wood-flamed"
-        },
-        {
-            "item_id": "col-flm-see",
-            "label_us": "See Thru Black Sunburst",
-            "price": 0,
-            "image": "image/flamed-black.webp",
-            "color_thumbnail": "image/t-flamed-black.webp",
-            "depends_on": "wood-flamed"
-        },
-        {
-            "item_id": "col-flm-tea",
-            "label_us": "Tea Sunburst",
-            "price": 0,
-            "image": "image/flamed-tea.webp",
-            "color_thumbnail": "image/t-flamed-tea.webp",
-            "depends_on": "wood-flamed"
-        },
-        {
-            "item_id": "col-flm-tiger",
-            "label_us": "Tiger Eye Sunburst",
-            "price": 0,
-            "image": "image/flamed-tiger.webp",
-            "color_thumbnail": "image/t-flamed-tiger.webp",
-            "depends_on": "wood-flamed"
-        },
-        {
-            "item_id": "col-qlt-aqua",
-            "label_us": "Aqua Marine Sunburst",
-            "price": 0,
-            "image": "image/quilted-aqua.webp",
-            "color_thumbnail": "image/t-quilted-aqua.webp",
-            "depends_on": "wood-quilted"
-        },
-        {
-            "item_id": "col-qlt-blue",
-            "label_us": "Blue Moon",
-            "price": 0,
-            "image": "image/quilted-blue-moon.webp",
-            "color_thumbnail": "image/t-quilted-blue-moon.webp",
-            "depends_on": "wood-quilted"
-        },
-        {
-            "item_id": "col-qlt-cran",
-            "label_us": "Cranberry Sunburst",
-            "price": 0,
-            "image": "image/quilted-cranberry.webp",
-            "color_thumbnail": "image/t-quilted-cranberry.webp",
-            "depends_on": "wood-quilted"
-        },
-        {
-            "item_id": "col-qlt-lime",
-            "label_us": "Dark Lime Sunburst",
-            "price": 0,
-            "image": "image/quilted-lime.webp",
-            "color_thumbnail": "image/t-quilted-lime.webp",
-            "depends_on": "wood-quilted"
-        },
-        {
-            "item_id": "col-qlt-purple",
-            "label_us": "Dark Purple Sunburst",
-            "price": 0,
-            "image": "image/quilted-purple.webp",
-            "color_thumbnail": "image/t-quilted-purple.webp",
-            "depends_on": "wood-quilted"
-        },
-        {
-            "item_id": "col-qlt-see",
-            "label_us": "See Thru Black Sunburst",
-            "price": 0,
-            "image": "image/quilted-black.webp",
-            "color_thumbnail": "image/t-quilted-black.webp",
-            "depends_on": "wood-quilted"
-        },
-        {
-            "item_id": "col-qlt-tea",
-            "label_us": "Tea Sunburst",
-            "price": 0,
-            "image": "image/quilted-tea.webp",
-            "color_thumbnail": "image/t-quilted-tea.webp",
-            "depends_on": "wood-quilted"
-        },
-        {
-            "item_id": "col-qlt-tiger",
-            "label_us": "Tiger Eye Sunburst",
-            "price": 0,
-            "image": "image/quilted-tiger.webp",
-            "color_thumbnail": "image/t-quilted-tiger.webp",
-            "depends_on": "wood-quilted"
-        }
-    ],
-    "data_pickup": [
-        {
-            "item_id": "pu-sd",
-            "label_us": "Seymour Duncan",
-            "price": 0,
-            "image": "image/pickup-seymour-black.webp"
-        },
-        {
-            "item_id": "pu-emg",
-            "label_us": "EMG",
-            "price": 200,
-            "image": "image/pickup-emg-black.webp"
-        },
-        {
-            "item_id": "pu-fish",
-            "label_us": "Fishman",
-            "price": 200,
-            "image": "image/pickup-fishman-black.webp"
-        }
-    ],
-    "data_rings": [
-        {
-            "item_id": "ring-creme",
-            "label_us": "Creme",
-            "price": 0,
-            "image": "image/rings-creme.webp"
-        },
-        {
-            "item_id": "ring-black",
-            "label_us": "Black",
-            "price": 0,
-            "image": "image/rings-black.webp"
-        }
-    ],
-    "data_hardware": [
-        {
-            "item_id": "hw-chrome",
-            "label_us": "Chrome",
-            "price": 0,
-            "image": "image/hardware-chrome.webp"
-        },
-        {
-            "item_id": "hw-black",
-            "label_us": "Black",
-            "price": 0,
-            "image": "image/hardware-black.webp"
-        },
-        {
-            "item_id": "hw-gold",
-            "label_us": "Gold",
-            "price": 0,
-            "image": "image/hardware-gold.webp"
-        }
-    ],
-    "data_knobs": [
-        {
-            "item_id": "knob-amber",
-            "label_us": "Amber",
-            "price": 0,
-            "image": "image/knobs-amber.webp"
-        },
-        {
-            "item_id": "knob-black",
-            "label_us": "Black",
-            "price": 0,
-            "image": "image/knobs-black.webp"
-        },
-        {
-            "item_id": "knob-gold",
-            "label_us": "Gold",
-            "price": 0,
-            "image": "image/knobs-gold.webp"
-        }
-    ]
+  "structure": [
+    {
+      "order": 1,
+      "category_id": "top-wood",
+      "sheet_name": "data_wood",
+      "label_us": "Top Wood",
+      "z_index": 10,
+      "is_dependent": false
+    },
+    {
+      "order": 2,
+      "category_id": "color",
+      "sheet_name": "data_color",
+      "label_us": "Color",
+      "z_index": 20,
+      "is_dependent": true
+    },
+    {
+      "order": 3,
+      "category_id": "pickup",
+      "sheet_name": "data_pickup",
+      "label_us": "Pickup",
+      "z_index": 30,
+      "is_dependent": false
+    },
+    {
+      "order": 4,
+      "category_id": "rings",
+      "sheet_name": "data_rings",
+      "label_us": "Pickup Rings",
+      "z_index": 40,
+      "is_dependent": false
+    },
+    {
+      "order": 5,
+      "category_id": "knobs",
+      "sheet_name": "data_knobs",
+      "label_us": "Knobs",
+      "z_index": 50,
+      "is_dependent": false
+    },
+    {
+      "order": 6,
+      "category_id": "hardware",
+      "sheet_name": "data_hardware",
+      "label_us": "Hardware",
+      "z_index": 60,
+      "is_dependent": false
+    }
+  ],
+  "data_wood": [
+    {
+      "item_id": "wood-solid",
+      "label_us": "Solid Color",
+      "price": 3000,
+      "image": "image/top-solid.webp"
+    },
+    {
+      "item_id": "wood-flamed",
+      "label_us": "Flamed Maple",
+      "price": 3100,
+      "image": "image/top-flamed.webp"
+    },
+    {
+      "item_id": "wood-quilted",
+      "label_us": "Quilted Maple",
+      "price": 3100,
+      "image": "image/top-quilted.webp"
+    }
+  ],
+  "data_color": [
+    {
+      "item_id": "col-sol-sapphire",
+      "label_us": "Sapphire Black Metallic",
+      "price": 0,
+      "image": "image/solid-black.webp",
+      "color_thumbnail": "image/t-solid-black.webp",
+      "depends_on": "wood-solid"
+    },
+    {
+      "item_id": "col-sol-apple",
+      "label_us": "Apple Bomb",
+      "price": 0,
+      "image": "image/solid-apple.webp",
+      "color_thumbnail": "image/t-solid-apple.webp",
+      "depends_on": "wood-solid"
+    },
+    {
+      "item_id": "col-sol-blacksp",
+      "label_us": "Black Sparkle",
+      "price": 0,
+      "image": "image/solid-black-sparkle.webp",
+      "color_thumbnail": "image/t-solid-black-sparkle.webp",
+      "depends_on": "wood-solid"
+    },
+    {
+      "item_id": "col-sol-midori",
+      "label_us": "Midori Gold",
+      "price": 0,
+      "image": "image/solid-midori.webp",
+      "color_thumbnail": "image/t-solid-midori.webp",
+      "depends_on": "wood-solid"
+    },
+    {
+      "item_id": "col-sol-ghost",
+      "label_us": "Ghost Flame",
+      "price": 200,
+      "image": "image/solid-ghost.webp",
+      "color_thumbnail": "image/t-solid-ghost.webp",
+      "depends_on": "wood-solid"
+    },
+    {
+      "item_id": "col-sol-hell",
+      "label_us": "Hellfire",
+      "price": 200,
+      "image": "image/solid-hellfire.webp",
+      "color_thumbnail": "image/t-solid-hellfire.webp",
+      "depends_on": "wood-solid"
+    },
+    {
+      "item_id": "col-sol-psych",
+      "label_us": "Psychedelic Flame",
+      "price": 200,
+      "image": "image/solid-psychedelic.webp",
+      "color_thumbnail": "image/t-solid-psychedelic.webp",
+      "depends_on": "wood-solid"
+    },
+    {
+      "item_id": "col-sol-jaw",
+      "label_us": "Jawbreaker",
+      "price": 200,
+      "image": "image/solid-jawbreaker.webp",
+      "color_thumbnail": "image/t-solid-jawbreaker.webp",
+      "depends_on": "wood-solid"
+    },
+    {
+      "item_id": "col-flm-aqua",
+      "label_us": "Aqua Marine Sunburst",
+      "price": 0,
+      "image": "image/flamed-aqua.webp",
+      "color_thumbnail": "image/t-flamed-aqua.webp",
+      "depends_on": "wood-flamed"
+    },
+    {
+      "item_id": "col-flm-blue",
+      "label_us": "Blue Moon",
+      "price": 0,
+      "image": "image/flamed-blue-moon.webp",
+      "color_thumbnail": "image/t-flamed-blue-moon.webp",
+      "depends_on": "wood-flamed"
+    },
+    {
+      "item_id": "col-flm-cran",
+      "label_us": "Cranberry Sunburst",
+      "price": 0,
+      "image": "image/flamed-cranberry.webp",
+      "color_thumbnail": "image/t-flamed-cranberry.webp",
+      "depends_on": "wood-flamed"
+    },
+    {
+      "item_id": "col-flm-lime",
+      "label_us": "Dark Lime Sunburst",
+      "price": 0,
+      "image": "image/flamed-lime.webp",
+      "color_thumbnail": "image/t-flamed-lime.webp",
+      "depends_on": "wood-flamed"
+    },
+    {
+      "item_id": "col-flm-purple",
+      "label_us": "Dark Purple Sunburst",
+      "price": 0,
+      "image": "image/flamed-purple.webp",
+      "color_thumbnail": "image/t-flamed-purple.webp",
+      "depends_on": "wood-flamed"
+    },
+    {
+      "item_id": "col-flm-see",
+      "label_us": "See Thru Black Sunburst",
+      "price": 0,
+      "image": "image/flamed-black.webp",
+      "color_thumbnail": "image/t-flamed-black.webp",
+      "depends_on": "wood-flamed"
+    },
+    {
+      "item_id": "col-flm-tea",
+      "label_us": "Tea Sunburst",
+      "price": 0,
+      "image": "image/flamed-tea.webp",
+      "color_thumbnail": "image/t-flamed-tea.webp",
+      "depends_on": "wood-flamed"
+    },
+    {
+      "item_id": "col-flm-tiger",
+      "label_us": "Tiger Eye Sunburst",
+      "price": 0,
+      "image": "image/flamed-tiger.webp",
+      "color_thumbnail": "image/t-flamed-tiger.webp",
+      "depends_on": "wood-flamed"
+    },
+    {
+      "item_id": "col-qlt-aqua",
+      "label_us": "Aqua Marine Sunburst",
+      "price": 0,
+      "image": "image/quilted-aqua.webp",
+      "color_thumbnail": "image/t-quilted-aqua.webp",
+      "depends_on": "wood-quilted"
+    },
+    {
+      "item_id": "col-qlt-blue",
+      "label_us": "Blue Moon",
+      "price": 0,
+      "image": "image/quilted-blue-moon.webp",
+      "color_thumbnail": "image/t-quilted-blue-moon.webp",
+      "depends_on": "wood-quilted"
+    },
+    {
+      "item_id": "col-qlt-cran",
+      "label_us": "Cranberry Sunburst",
+      "price": 0,
+      "image": "image/quilted-cranberry.webp",
+      "color_thumbnail": "image/t-quilted-cranberry.webp",
+      "depends_on": "wood-quilted"
+    },
+    {
+      "item_id": "col-qlt-lime",
+      "label_us": "Dark Lime Sunburst",
+      "price": 0,
+      "image": "image/quilted-lime.webp",
+      "color_thumbnail": "image/t-quilted-lime.webp",
+      "depends_on": "wood-quilted"
+    },
+    {
+      "item_id": "col-qlt-purple",
+      "label_us": "Dark Purple Sunburst",
+      "price": 0,
+      "image": "image/quilted-purple.webp",
+      "color_thumbnail": "image/t-quilted-purple.webp",
+      "depends_on": "wood-quilted"
+    },
+    {
+      "item_id": "col-qlt-see",
+      "label_us": "See Thru Black Sunburst",
+      "price": 0,
+      "image": "image/quilted-black.webp",
+      "color_thumbnail": "image/t-quilted-black.webp",
+      "depends_on": "wood-quilted"
+    },
+    {
+      "item_id": "col-qlt-tea",
+      "label_us": "Tea Sunburst",
+      "price": 0,
+      "image": "image/quilted-tea.webp",
+      "color_thumbnail": "image/t-quilted-tea.webp",
+      "depends_on": "wood-quilted"
+    },
+    {
+      "item_id": "col-qlt-tiger",
+      "label_us": "Tiger Eye Sunburst",
+      "price": 0,
+      "image": "image/quilted-tiger.webp",
+      "color_thumbnail": "image/t-quilted-tiger.webp",
+      "depends_on": "wood-quilted"
+    }
+  ],
+  "data_pickup": [
+    {
+      "item_id": "pu-sd",
+      "label_us": "Seymour Duncan",
+      "price": 0,
+      "image": "image/pickup-seymour-black.webp"
+    },
+    {
+      "item_id": "pu-emg",
+      "label_us": "EMG",
+      "price": 200,
+      "image": "image/pickup-emg-black.webp"
+    },
+    {
+      "item_id": "pu-fish",
+      "label_us": "Fishman",
+      "price": 200,
+      "image": "image/pickup-fishman-black.webp"
+    }
+  ],
+  "data_rings": [
+    {
+      "item_id": "ring-creme",
+      "label_us": "Creme",
+      "price": 0,
+      "image": "image/rings-creme.webp"
+    },
+    {
+      "item_id": "ring-black",
+      "label_us": "Black",
+      "price": 0,
+      "image": "image/rings-black.webp"
+    }
+  ],
+  "data_hardware": [
+    {
+      "item_id": "hw-chrome",
+      "label_us": "Chrome",
+      "price": 0,
+      "image": "image/hardware-chrome.webp"
+    },
+    {
+      "item_id": "hw-black",
+      "label_us": "Black",
+      "price": 0,
+      "image": "image/hardware-black.webp"
+    },
+    {
+      "item_id": "hw-gold",
+      "label_us": "Gold",
+      "price": 0,
+      "image": "image/hardware-gold.webp"
+    }
+  ],
+  "data_knobs": [
+    {
+      "item_id": "knob-amber",
+      "label_us": "Amber",
+      "price": 0,
+      "image": "image/knobs-amber.webp"
+    },
+    {
+      "item_id": "knob-black",
+      "label_us": "Black",
+      "price": 0,
+      "image": "image/knobs-black.webp"
+    },
+    {
+      "item_id": "knob-gold",
+      "label_us": "Gold",
+      "price": 0,
+      "image": "image/knobs-gold.webp"
+    }
+  ]
 }
