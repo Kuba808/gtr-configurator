@@ -19,7 +19,7 @@ export const getGuitarLayers = (state) => {
         if (item && item.image) {
             layers.push({
                 id: cat.category_id,
-                src: `/gtr-configurator/${item.image}`,
+                src: `${import.meta.env.BASE_URL}${item.image}`,
                 zIndex: cat.z_index
             });
         }
@@ -38,7 +38,7 @@ export const getGuitarLayers = (state) => {
             // We can try to replace "black" with the selected color if it follows the pattern
             const src = pickup.image.replace('black', state.pickupColor);
             const layer = layers.find(l => l.id === 'pickup');
-            if (layer) layer.src = `/gtr-configurator/${src}`;
+            if (layer) layer.src = `${import.meta.env.BASE_URL}${src}`;
         }
     }
 
