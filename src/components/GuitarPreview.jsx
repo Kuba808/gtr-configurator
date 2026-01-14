@@ -20,10 +20,10 @@ const GuitarPreview = ({ layers }) => {
         if (e.touches.length === 1) {
             // Jednoprstový dotyk - posuv
             setIsDragging(true);
-            // Pro rotaci -90°: transformujeme souřadnice
-            // Prohození os: clientX -> -Y, clientY -> X
-            const transformedX = e.touches[0].clientY;
-            const transformedY = -e.touches[0].clientX;
+            // Pro rotaci -90°: transformujeme souřadnice a invertujeme směr
+            // Prohození os: clientX -> Y, clientY -> -X
+            const transformedX = -e.touches[0].clientY;
+            const transformedY = e.touches[0].clientX;
             setDragStart({
                 x: transformedX - position.x,
                 y: transformedY - position.y
@@ -40,10 +40,10 @@ const GuitarPreview = ({ layers }) => {
     const handleTouchMove = (e) => {
         if (e.touches.length === 1 && isDragging) {
             // Jednoprstový posuv
-            // Pro rotaci -90°: transformujeme souřadnice
-            // Prohození os: clientX -> -Y, clientY -> X
-            const transformedX = e.touches[0].clientY;
-            const transformedY = -e.touches[0].clientX;
+            // Pro rotaci -90°: transformujeme souřadnice a invertujeme směr
+            // Prohození os: clientX -> Y, clientY -> -X
+            const transformedX = -e.touches[0].clientY;
+            const transformedY = e.touches[0].clientX;
             setPosition({
                 x: transformedX - dragStart.x,
                 y: transformedY - dragStart.y
