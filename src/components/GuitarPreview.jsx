@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 
-const GuitarPreview = ({ layers }) => {
-    const [isFullscreen, setIsFullscreen] = useState(false);
+const GuitarPreview = ({ layers, isFullscreen, setIsFullscreen }) => {
     const [scale, setScale] = useState(1);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
     const [initialPinchDistance, setInitialPinchDistance] = useState(null);
     const [initialScale, setInitialScale] = useState(1);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+
+    React.useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 1024);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Funkce pro výpočet vzdálenosti mezi dvěma prsty
     const getDistance = (touch1, touch2) => {
@@ -20,14 +26,18 @@ const GuitarPreview = ({ layers }) => {
         if (e.touches.length === 1) {
             // Jednoprstový dotyk - posuv
             setIsDragging(true);
-            // Pro rotaci -90°: transformujeme souřadnice a invertujeme směr
-            // Prohození os: clientX -> Y, clientY -> -X
-            const transformedX = -e.touches[0].clientY;
-            const transformedY = e.touches[0].clientX;
-            setDragStart({
-                x: transformedX - position.x,
-                y: transformedY - position.y
-            });
+            const { clientX, clientY } = e.touches[0];
+            if (isMobile) {
+                setDragStart({
+                    x: -clientY - position.x,
+                    y: clientX - position.y
+                });
+            } else {
+                setDragStart({
+                    x: clientX - position.x,
+                    y: clientY - position.y
+                });
+            }
         } else if (e.touches.length === 2) {
             // Dvouprstový dotyk - pinch zoom
             setIsDragging(false);
@@ -40,14 +50,18 @@ const GuitarPreview = ({ layers }) => {
     const handleTouchMove = (e) => {
         if (e.touches.length === 1 && isDragging) {
             // Jednoprstový posuv
-            // Pro rotaci -90°: transformujeme souřadnice a invertujeme směr
-            // Prohození os: clientX -> Y, clientY -> -X
-            const transformedX = -e.touches[0].clientY;
-            const transformedY = e.touches[0].clientX;
-            setPosition({
-                x: transformedX - dragStart.x,
-                y: transformedY - dragStart.y
-            });
+            const { clientX, clientY } = e.touches[0];
+            if (isMobile) {
+                setPosition({
+                    x: -clientY - dragStart.x,
+                    y: clientX - dragStart.y
+                });
+            } else {
+                setPosition({
+                    x: clientX - dragStart.x,
+                    y: clientY - dragStart.y
+                });
+            }
         } else if (e.touches.length === 2 && initialPinchDistance) {
             // Dvouprstový pinch zoom
             e.preventDefault(); // Zabránit defaultnímu zoom prohlížeče
@@ -92,7 +106,7 @@ const GuitarPreview = ({ layers }) => {
         <>
             {/* Normal Preview */}
             <div className="relative w-full aspect-[4/3] lg:aspect-[16/9] max-h-[35vh] lg:max-h-[85vh] flex items-center justify-center px-4 lg:px-0 lg:pr-24 transition-all duration-500">
-                <div className="relative w-full h-full lg:max-w-none mx-auto flex items-center justify-center transform scale-95 lg:scale-105">
+                <div className="relative w-full h-full lg:max-w-none mx-auto flex items-center justify-center transform scale-95 lg:scale-100 transition-transform duration-700">
                     {layers.map((layer) => (
                         <img
                             key={layer.id}
@@ -103,50 +117,75 @@ const GuitarPreview = ({ layers }) => {
                         />
                     ))}
                 </div>
-
-                {/* Fullscreen Button (Mobile Only) */}
-                <button
-                    onClick={openFullscreen}
-                    className="lg:hidden absolute top-2 right-2 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 p-2 rounded-full transition-all active:scale-95"
-                    aria-label="Open fullscreen view"
-                >
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                    </svg>
-                </button>
             </div>
 
             {/* Fullscreen Modal */}
             {isFullscreen && (
-                <div className="fixed inset-0 z-[300] bg-slate-950 flex flex-col">
+                <div className="fixed inset-0 z-[300] bg-slate-950/95 backdrop-blur-xl flex flex-col">
                     {/* Header */}
-                    <div className="absolute top-0 left-0 right-0 z-10 p-4 bg-gradient-to-b from-slate-950 to-transparent">
-                        <div className="flex justify-between items-center">
-                            <h3 className="text-lg font-bold text-white">Guitar Preview</h3>
+                    <div className="absolute top-0 left-0 right-0 z-10 p-6 bg-gradient-to-b from-slate-950 to-transparent">
+                        <div className="flex justify-between items-center max-w-[1800px] mx-auto">
+                            <h3 className="text-2xl font-black text-white tracking-tight">Full Detail View</h3>
                             <button
                                 onClick={closeFullscreen}
-                                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 p-2 rounded-full transition-all active:scale-95"
+                                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 p-3 rounded-full transition-all active:scale-95 group"
                                 aria-label="Close fullscreen"
                             >
-                                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-7 h-7 text-white group-hover:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
                         </div>
                     </div>
 
-                    {/* Guitar Container - Rotated 90 degrees */}
+                    {/* Guitar Container - Rotated 90 degrees to use width */}
                     <div
-                        className="flex-1 flex items-center justify-center overflow-hidden touch-none"
+                        className="flex-1 flex items-center justify-center overflow-hidden touch-none cursor-grab active:cursor-grabbing"
                         onTouchStart={handleTouchStart}
                         onTouchMove={handleTouchMove}
                         onTouchEnd={handleTouchEnd}
+                        onMouseDown={(e) => {
+                            setIsDragging(true);
+                            if (isMobile) {
+                                setDragStart({
+                                    x: -e.clientY - position.x,
+                                    y: e.clientX - position.y
+                                });
+                            } else {
+                                setDragStart({
+                                    x: e.clientX - position.x,
+                                    y: e.clientY - position.y
+                                });
+                            }
+                        }}
+                        onMouseMove={(e) => {
+                            if (isDragging) {
+                                if (isMobile) {
+                                    setPosition({
+                                        x: -e.clientY - dragStart.x,
+                                        y: e.clientX - dragStart.y
+                                    });
+                                } else {
+                                    setPosition({
+                                        x: e.clientX - dragStart.x,
+                                        y: e.clientY - dragStart.y
+                                    });
+                                }
+                            }
+                        }}
+                        onMouseUp={() => setIsDragging(false)}
+                        onMouseLeave={() => setIsDragging(false)}
+                        onWheel={(e) => {
+                            const delta = -e.deltaY;
+                            if (delta > 0) handleZoomIn();
+                            else handleZoomOut();
+                        }}
                     >
                         <div
-                            className="relative w-[90vh] h-[90vw] flex items-center justify-center"
+                            className={`relative ${isMobile ? 'w-[90vh] h-[90vw]' : 'w-[90vw] h-[90vh]'} flex items-center justify-center`}
                             style={{
-                                transform: `rotate(-90deg) translate(${position.x}px, ${position.y}px) scale(${scale})`,
-                                transition: isDragging ? 'none' : 'transform 0.3s ease-out'
+                                transform: `${isMobile ? 'rotate(-90deg)' : ''} translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                                transition: isDragging ? 'none' : 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
                             }}
                         >
                             {layers.map((layer) => (

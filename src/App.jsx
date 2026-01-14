@@ -28,6 +28,7 @@ function App() {
   const [isCopied, setIsCopied] = useState(false);
   const [showQuoteModal, setShowQuoteModal] = useState(false);
   const [email, setEmail] = useState('');
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const calculateTotal = () => {
     let total = BASE_PRICE;
@@ -85,18 +86,27 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen lg:h-screen bg-slate-950 bg-[radial-gradient(circle_at_center,_#1e293b_0%,#020617_100%)] text-white font-sans selection:bg-blue-500 selection:text-white">
+    <div className="min-h-screen lg:h-screen lg:overflow-hidden bg-slate-950 bg-[radial-gradient(circle_at_center,_#1e293b_0%,#020617_100%)] text-white font-sans selection:bg-blue-500 selection:text-white">
       <div className="max-w-[1800px] h-full mx-auto px-4 lg:px-8 py-4 lg:py-8 flex flex-col lg:flex-row gap-4 lg:gap-12">
 
         {/* Left Column: Preview */}
         <div className="flex-1 flex flex-col justify-start lg:justify-center relative">
-          <header className="relative lg:absolute lg:top-0 lg:left-0 z-10 mb-[10px] lg:mb-0 lg:p-[18px] text-center lg:text-left">
+          <header className="relative lg:absolute lg:top-0 lg:left-0 lg:right-0 z-10 mb-[10px] lg:mb-0 lg:p-[18px] flex items-center justify-between">
             <h1 className="text-[26px] lg:text-[32px] font-extrabold tracking-tight bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               Guitar Builder
             </h1>
+            <button
+              onClick={() => setIsFullscreen(true)}
+              className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 p-2.5 rounded-full transition-all active:scale-95 group shadow-xl"
+              aria-label="Open fullscreen view"
+            >
+              <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+              </svg>
+            </button>
           </header>
 
-          <GuitarPreview layers={layers} />
+          <GuitarPreview layers={layers} isFullscreen={isFullscreen} setIsFullscreen={setIsFullscreen} />
 
           {/* Bottom Actions (Desktop: Bottom Left, Mobile: Hidden - rendered in Configurator) */}
           <div className="hidden lg:flex absolute bottom-4 left-4 z-50 flex-wrap gap-3">
