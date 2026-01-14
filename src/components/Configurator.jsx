@@ -129,9 +129,9 @@ const Configurator = ({ state, dispatch, onShare, isCopied, calculateTotal, setS
     };
 
     return (
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col lg:h-full">
             {/* Desktop View */}
-            <div className="hidden lg:block h-full overflow-y-auto scrollbar-hide pr-4">
+            <div className="hidden lg:flex lg:flex-col h-full overflow-y-auto scrollbar-hide pr-4">
                 <h2 className="text-3xl font-bold text-white mb-8">Configuration</h2>
                 {categories.map(cat => (
                     <div key={cat.id} className="mb-10 last:mb-0">

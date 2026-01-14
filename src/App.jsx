@@ -85,8 +85,8 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 bg-[radial-gradient(circle_at_center,_#1e293b_0%,#020617_100%)] text-white font-sans selection:bg-blue-500 selection:text-white">
-      <div className="max-w-[1800px] min-h-screen lg:h-screen mx-auto px-4 lg:px-8 py-4 lg:py-8 flex flex-col lg:flex-row gap-4 lg:gap-12">
+    <div className="min-h-screen lg:h-screen bg-slate-950 bg-[radial-gradient(circle_at_center,_#1e293b_0%,#020617_100%)] text-white font-sans selection:bg-blue-500 selection:text-white">
+      <div className="max-w-[1800px] h-full mx-auto px-4 lg:px-8 py-4 lg:py-8 flex flex-col lg:flex-row gap-4 lg:gap-12">
 
         {/* Left Column: Preview */}
         <div className="flex-1 flex flex-col justify-start lg:justify-center relative">
@@ -125,7 +125,7 @@ function App() {
         </div>
 
         {/* Right Column: Configurator */}
-        <div className="flex-1 lg:max-w-md flex flex-col justify-start h-auto lg:h-full lg:overflow-hidden">
+        <div className="flex-1 lg:max-w-md flex flex-col justify-start h-auto lg:h-full">
           <Configurator
             state={state}
             dispatch={dispatch}
