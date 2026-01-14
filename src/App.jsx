@@ -90,8 +90,8 @@ function App() {
 
         {/* Left Column: Preview */}
         <div className="flex-1 flex flex-col justify-start lg:justify-center relative">
-          <header className="relative lg:absolute lg:top-0 lg:left-0 z-10 mb-2 lg:mb-0 lg:p-4 text-center lg:text-left">
-            <h1 className="text-2xl lg:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <header className="relative lg:absolute lg:top-0 lg:left-0 z-10 mb-[10px] lg:mb-0 lg:p-[18px] text-center lg:text-left">
+            <h1 className="text-[26px] lg:text-[32px] font-extrabold tracking-tight bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               Guitar Builder
             </h1>
           </header>
