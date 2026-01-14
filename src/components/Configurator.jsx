@@ -129,7 +129,7 @@ const Configurator = ({ state, dispatch, onShare, isCopied, calculateTotal, setS
     };
 
     return (
-        <div className="h-full">
+        <div className="flex-1 flex flex-col">
             {/* Desktop View */}
             <div className="hidden lg:block h-full overflow-y-auto scrollbar-hide pr-4">
                 <h2 className="text-3xl font-bold text-white mb-8">Configuration</h2>
@@ -144,7 +144,7 @@ const Configurator = ({ state, dispatch, onShare, isCopied, calculateTotal, setS
             </div>
 
             {/* Mobile View: Category List */}
-            <div className="lg:hidden flex flex-col gap-6 pb-6 mt-auto">
+            <div className="lg:hidden flex flex-col gap-6 pb-12 mt-4">
                 <div className="grid grid-cols-2 gap-3">
                     {categories.map(cat => (
                         <button

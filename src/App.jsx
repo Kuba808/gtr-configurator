@@ -85,8 +85,8 @@ function App() {
   };
 
   return (
-    <div className="h-screen overflow-hidden bg-slate-950 bg-[radial-gradient(circle_at_center,_#1e293b_0%,#020617_100%)] text-white font-sans selection:bg-blue-500 selection:text-white">
-      <div className="max-w-[1800px] h-full mx-auto px-4 lg:px-8 py-4 lg:py-8 flex flex-col lg:flex-row gap-4 lg:gap-12">
+    <div className="min-h-screen bg-slate-950 bg-[radial-gradient(circle_at_center,_#1e293b_0%,#020617_100%)] text-white font-sans selection:bg-blue-500 selection:text-white">
+      <div className="max-w-[1800px] min-h-screen lg:h-screen mx-auto px-4 lg:px-8 py-4 lg:py-8 flex flex-col lg:flex-row gap-4 lg:gap-12">
 
         {/* Left Column: Preview */}
         <div className="flex-1 flex flex-col justify-start lg:justify-center relative">
@@ -125,7 +125,7 @@ function App() {
         </div>
 
         {/* Right Column: Configurator */}
-        <div className="flex-1 lg:max-w-md flex flex-col justify-end lg:justify-start h-full">
+        <div className="flex-1 lg:max-w-md flex flex-col justify-start h-auto lg:h-full lg:overflow-hidden">
           <Configurator
             state={state}
             dispatch={dispatch}
@@ -140,16 +140,16 @@ function App() {
 
       {/* Quote Modal */}
       {showQuoteModal && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-0 lg:p-4">
           <div
             className="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity animate-in fade-in"
             onClick={() => setShowQuoteModal(false)}
           />
-          <div className="relative bg-slate-900 border border-white/20 rounded-[32px] w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-300">
+          <div className="relative bg-slate-900 border-0 lg:border lg:border-white/20 lg:rounded-[32px] w-full h-full lg:h-auto max-w-2xl lg:max-h-[90vh] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-300">
             {/* Header */}
-            <div className="p-8 pb-4 shrink-0">
+            <div className="p-4 lg:p-8 pb-3 lg:pb-4 shrink-0">
               <div className="flex justify-between items-center">
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                <h2 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                   Order Summary
                 </h2>
                 <button
@@ -162,30 +162,30 @@ function App() {
             </div>
 
             {/* Scrollable Content area */}
-            <div className="px-8 flex-1 min-h-0 flex flex-col mb-4">
-              <div className="bg-white/5 rounded-2xl border border-white/10 flex flex-col overflow-hidden h-full">
+            <div className="px-4 lg:px-8 flex-1 min-h-0 flex flex-col mb-3 lg:mb-4 overflow-hidden">
+              <div className="bg-white/5 rounded-xl lg:rounded-2xl border border-white/10 flex flex-col overflow-hidden">
                 {/* Fixed Header */}
                 <div className="bg-slate-900/50 backdrop-blur-md border-b border-white/10 shrink-0">
                   <table className="w-full text-left border-collapse">
                     <thead>
                       <tr>
-                        <th className="px-6 py-4 text-xs uppercase tracking-widest text-gray-400 font-bold w-1/3">Category</th>
-                        <th className="px-6 py-4 text-xs uppercase tracking-widest text-gray-400 font-bold w-1/2">Selection</th>
-                        <th className="px-6 py-4 text-xs uppercase tracking-widest text-gray-400 font-bold text-right">Price</th>
+                        <th className="px-2 lg:px-6 py-2 lg:py-4 text-[10px] lg:text-xs uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold w-[30%]">Category</th>
+                        <th className="px-2 lg:px-6 py-2 lg:py-4 text-[10px] lg:text-xs uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold w-[45%]">Selection</th>
+                        <th className="px-2 lg:px-6 py-2 lg:py-4 text-[10px] lg:text-xs uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold text-right w-[25%]">Price</th>
                       </tr>
                     </thead>
                   </table>
                 </div>
 
                 {/* Scrollable Body */}
-                <div className="flex-1 overflow-y-auto scrollbar-hide">
+                <div className="overflow-y-auto scrollbar-hide max-h-[40vh] lg:max-h-none">
                   <table className="w-full text-left border-collapse">
                     <tbody className="divide-y divide-white/5">
                       {getSelectedItems().map((item, idx) => (
                         <tr key={idx} className="hover:bg-white/5 transition-colors">
-                          <td className="px-6 py-4 text-sm text-gray-400 w-1/3">{item.label}</td>
-                          <td className="px-6 py-4 text-sm font-medium text-white w-1/2">{item.name}</td>
-                          <td className="px-6 py-4 text-sm font-mono text-right text-gray-300">
+                          <td className="px-2 lg:px-6 py-2 lg:py-4 text-xs lg:text-sm text-gray-400 w-[30%]">{item.label}</td>
+                          <td className="px-2 lg:px-6 py-2 lg:py-4 text-xs lg:text-sm font-medium text-white w-[45%] break-words">{item.name}</td>
+                          <td className="px-2 lg:px-6 py-2 lg:py-4 text-xs lg:text-sm font-mono text-right text-gray-300 w-[25%] whitespace-nowrap">
                             {item.price > 0 ? `+${item.price} €` : (item.price === 0 ? 'Inc.' : `${item.price} €`)}
                           </td>
                         </tr>
@@ -193,21 +193,21 @@ function App() {
                     </tbody>
                   </table>
                 </div>
+              </div>
 
-                {/* Fixed Total */}
-                <div className="bg-blue-600/10 border-t border-white/10 shrink-0 px-6 py-6 flex justify-between items-center">
-                  <span className="text-lg font-bold text-white">Total Estimated Price</span>
-                  <span className="text-2xl font-black text-blue-400">
-                    {calculateTotal().toLocaleString()} €
-                  </span>
-                </div>
+              {/* Total Estimated Price - Outside table container */}
+              <div className="bg-blue-600/10 border border-white/10 rounded-xl lg:rounded-2xl mt-3 lg:mt-4 shrink-0 px-3 lg:px-6 py-4 lg:py-6 flex justify-between items-center">
+                <span className="text-base lg:text-lg font-bold text-white">Total Estimated Price</span>
+                <span className="text-xl lg:text-2xl font-black text-blue-400">
+                  {calculateTotal().toLocaleString()} €
+                </span>
               </div>
             </div>
 
             {/* Footer */}
-            <div className="p-8 pt-4 shrink-0 border-t border-white/5 bg-slate-900/50 backdrop-blur-sm">
-              <div className="mb-6">
-                <label htmlFor="email" className="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-3">
+            <div className="p-4 lg:p-8 pt-3 lg:pt-4 shrink-0 border-t border-white/5 bg-slate-900/50 backdrop-blur-sm pb-safe">
+              <div className="mb-4 lg:mb-6">
+                <label htmlFor="email" className="block text-[10px] lg:text-xs uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold mb-2 lg:mb-3">
                   Your Email / Kontakt
                 </label>
                 <input
@@ -216,15 +216,15 @@ function App() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 lg:px-6 py-3 lg:py-4 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500 transition-colors"
                   required
                 />
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex gap-3 lg:gap-4">
                 <button
                   onClick={() => setShowQuoteModal(false)}
-                  className="flex-1 py-4 px-6 border border-white/10 rounded-xl font-bold text-gray-400 hover:bg-white/5 transition-colors"
+                  className="flex-1 py-3 lg:py-4 px-4 lg:px-6 border border-white/10 rounded-xl font-bold text-sm lg:text-base text-gray-400 hover:bg-white/5 transition-colors"
                 >
                   Cancel
                 </button>
@@ -241,7 +241,7 @@ function App() {
                     alert(`Quote request sent successfully to ${email}!`);
                     setShowQuoteModal(false);
                   }}
-                  className="flex-[2] py-4 px-6 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/20 active:scale-[0.98]"
+                  className="flex-[2] py-3 lg:py-4 px-4 lg:px-6 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm lg:text-base rounded-xl transition-all shadow-lg shadow-blue-600/20 active:scale-[0.98]"
                 >
                   Send Request
                 </button>
