@@ -6,28 +6,61 @@ const GuitarPreview = ({ layers }) => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+    const [initialPinchDistance, setInitialPinchDistance] = useState(null);
+    const [initialScale, setInitialScale] = useState(1);
+
+    // Funkce pro výpočet vzdálenosti mezi dvěma prsty
+    const getDistance = (touch1, touch2) => {
+        const dx = touch1.clientX - touch2.clientX;
+        const dy = touch1.clientY - touch2.clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+    };
 
     const handleTouchStart = (e) => {
         if (e.touches.length === 1) {
+            // Jednoprstový dotyk - posuv
             setIsDragging(true);
+            // Pro rotaci -90°: transformujeme souřadnice
+            // Prohození os: clientX -> -Y, clientY -> X
+            const transformedX = e.touches[0].clientY;
+            const transformedY = -e.touches[0].clientX;
             setDragStart({
-                x: e.touches[0].clientX - position.x,
-                y: e.touches[0].clientY - position.y
+                x: transformedX - position.x,
+                y: transformedY - position.y
             });
+        } else if (e.touches.length === 2) {
+            // Dvouprstový dotyk - pinch zoom
+            setIsDragging(false);
+            const distance = getDistance(e.touches[0], e.touches[1]);
+            setInitialPinchDistance(distance);
+            setInitialScale(scale);
         }
     };
 
     const handleTouchMove = (e) => {
-        if (isDragging && e.touches.length === 1) {
+        if (e.touches.length === 1 && isDragging) {
+            // Jednoprstový posuv
+            // Pro rotaci -90°: transformujeme souřadnice
+            // Prohození os: clientX -> -Y, clientY -> X
+            const transformedX = e.touches[0].clientY;
+            const transformedY = -e.touches[0].clientX;
             setPosition({
-                x: e.touches[0].clientX - dragStart.x,
-                y: e.touches[0].clientY - dragStart.y
+                x: transformedX - dragStart.x,
+                y: transformedY - dragStart.y
             });
+        } else if (e.touches.length === 2 && initialPinchDistance) {
+            // Dvouprstový pinch zoom
+            e.preventDefault(); // Zabránit defaultnímu zoom prohlížeče
+            const currentDistance = getDistance(e.touches[0], e.touches[1]);
+            const scaleChange = currentDistance / initialPinchDistance;
+            const newScale = Math.min(Math.max(initialScale * scaleChange, 1), 3);
+            setScale(newScale);
         }
     };
 
     const handleTouchEnd = () => {
         setIsDragging(false);
+        setInitialPinchDistance(null);
     };
 
     const handleZoomIn = () => {
@@ -112,7 +145,7 @@ const GuitarPreview = ({ layers }) => {
                         <div
                             className="relative w-[90vh] h-[90vw] flex items-center justify-center"
                             style={{
-                                transform: `rotate(90deg) translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                                transform: `rotate(-90deg) translate(${position.x}px, ${position.y}px) scale(${scale})`,
                                 transition: isDragging ? 'none' : 'transform 0.3s ease-out'
                             }}
                         >
