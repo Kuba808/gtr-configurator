@@ -39,7 +39,7 @@ body {
     }
 
     .scroll-fade {
-        mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 98%, transparent 100%);
     }
 }
 

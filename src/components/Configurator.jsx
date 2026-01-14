@@ -64,15 +64,15 @@ const Configurator = ({ state, dispatch, onShare, isCopied, calculateTotal, setS
         const isColor = categoryId === 'color';
 
         return (
-            <div className="space-y-4">
-                <div className={isColor ? "grid grid-cols-4 sm:grid-cols-5 gap-3" : "grid grid-cols-2 sm:grid-cols-3 gap-2"}>
+            <div className="space-y-3">
+                <div className={isColor ? "grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-4 gap-2 lg:gap-1.5" : "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 lg:gap-1.5"}>
                     {items.map((item) => (
                         <button
                             key={item.item_id}
                             onClick={() => update(categoryId, item.item_id)}
                             className={isColor
-                                ? `group relative aspect-square rounded-xl border-2 overflow-hidden transition-all ${state[categoryId] === item.item_id ? 'border-blue-500' : 'border-white/10'}`
-                                : `p-3 rounded-xl border text-sm transition-all ${state[categoryId] === item.item_id ? 'border-blue-500 bg-blue-500/20 text-white' : 'border-white/10 text-gray-400'}`
+                                ? `group relative aspect-square rounded-lg border-2 overflow-hidden transition-all ${state[categoryId] === item.item_id ? 'border-blue-500' : 'border-white/10'}`
+                                : `p-2 lg:p-1.5 rounded-lg border text-sm transition-all ${state[categoryId] === item.item_id ? 'border-blue-500 bg-blue-500/20 text-white' : 'border-white/10 text-gray-400'}`
                             }
                         >
                             {isColor ? (
@@ -87,7 +87,7 @@ const Configurator = ({ state, dispatch, onShare, isCopied, calculateTotal, setS
                                         }}
                                     />
                                     {item.price > 0 && (
-                                        <div className="absolute bottom-1 right-1 bg-blue-600 px-1.5 py-0.5 rounded text-[9px] font-black text-white shadow-lg pointer-events-none">
+                                        <div className="absolute bottom-1 right-1 bg-blue-600 px-2 py-0.5 rounded text-sm font-black text-white shadow-lg pointer-events-none">
                                             +{item.price} €
                                         </div>
                                     )}
@@ -96,7 +96,7 @@ const Configurator = ({ state, dispatch, onShare, isCopied, calculateTotal, setS
                                 <div className="flex flex-col items-center justify-center h-full">
                                     <span>{item.label_us}</span>
                                     {item.price > 0 && (
-                                        <span className={`text-[10px] font-bold mt-0.5 ${state[categoryId] === item.item_id ? 'text-white' : 'text-blue-400'}`}>
+                                        <span className={`text-sm font-bold mt-0.5 ${state[categoryId] === item.item_id ? 'text-white' : 'text-blue-400'}`}>
                                             +{item.price} €
                                         </span>
                                     )}
@@ -108,34 +108,36 @@ const Configurator = ({ state, dispatch, onShare, isCopied, calculateTotal, setS
                 </div>
 
                 {/* Special case for Pickup Colors - keeping it for now as it's a popular feature */}
-                {categoryId === 'pickup' && (
-                    <div className="flex gap-2 pt-2 border-t border-white/5">
-                        {['black', 'gold', 'silver'].map(variant => (
-                            <button
-                                key={variant}
-                                onClick={() => dispatch({ type: 'UPDATE', key: 'pickupColor', value: variant })}
-                                className={`px-4 py-2 rounded-full border text-xs capitalize transition-all ${state.pickupColor === variant
-                                    ? 'border-blue-500 bg-blue-500/20 text-white'
-                                    : 'border-white/10 text-gray-400'
-                                    }`}
-                            >
-                                {variant}
-                            </button>
-                        ))}
-                    </div>
-                )}
-            </div>
+                {
+                    categoryId === 'pickup' && (
+                        <div className="flex gap-2 pt-2 border-t border-white/5">
+                            {['black', 'gold', 'silver'].map(variant => (
+                                <button
+                                    key={variant}
+                                    onClick={() => dispatch({ type: 'UPDATE', key: 'pickupColor', value: variant })}
+                                    className={`px-4 py-2 rounded-full border text-sm capitalize transition-all ${state.pickupColor === variant
+                                        ? 'border-blue-500 bg-blue-500/20 text-white'
+                                        : 'border-white/10 text-gray-400'
+                                        }`}
+                                >
+                                    {variant}
+                                </button>
+                            ))}
+                        </div>
+                    )
+                }
+            </div >
         );
     };
 
     return (
         <div className="flex-1 flex flex-col lg:h-full">
             {/* Desktop View */}
-            <div className="hidden lg:flex lg:flex-col h-full overflow-y-auto scrollbar-custom scroll-fade pr-4">
+            <div className="hidden lg:flex lg:flex-col h-full overflow-y-auto scrollbar-custom scroll-fade pr-4 pb-12">
                 <h2 className="text-xl font-bold text-white mb-8 border-b border-white/10 pb-4">Configuration</h2>
                 {categories.map(cat => (
-                    <div key={cat.id} className="mb-10 last:mb-0">
-                        <label className="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-3">
+                    <div key={cat.id} className="mb-6 last:mb-0">
+                        <label className="block text-sm uppercase tracking-widest text-gray-400 font-bold mb-3">
                             {cat.label} {cat.id === 'color' && <span className="text-blue-400">: {cat.value}</span>}
                         </label>
                         {renderCategoryOptions(cat.id)}
@@ -152,7 +154,7 @@ const Configurator = ({ state, dispatch, onShare, isCopied, calculateTotal, setS
                             onClick={() => setActiveCategory(cat.id)}
                             className="bg-white/5 backdrop-blur-sm border border-white/10 p-4 rounded-xl text-left transition-all active:scale-95 group"
                         >
-                            <span className="block text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-1">{cat.label}</span>
+                            <span className="block text-sm uppercase tracking-wider text-gray-500 font-bold mb-1">{cat.label}</span>
                             <span className="block text-sm text-white font-medium truncate group-active:text-blue-400">{cat.value}</span>
                         </button>
                     ))}

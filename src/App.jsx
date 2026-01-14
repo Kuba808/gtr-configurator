@@ -135,7 +135,7 @@ function App() {
         </div>
 
         {/* Right Column: Configurator */}
-        <div className="flex-1 lg:max-w-md flex flex-col justify-start h-auto lg:h-full">
+        <div className="flex-1 lg:max-w-sm flex flex-col justify-start h-auto lg:h-full">
           <Configurator
             state={state}
             dispatch={dispatch}
@@ -179,9 +179,9 @@ function App() {
                   <table className="w-full text-left border-collapse">
                     <thead>
                       <tr>
-                        <th className="px-2 lg:px-6 py-2 lg:py-4 text-[10px] lg:text-xs uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold w-[30%]">Category</th>
-                        <th className="px-2 lg:px-6 py-2 lg:py-4 text-[10px] lg:text-xs uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold w-[45%]">Selection</th>
-                        <th className="px-2 lg:px-6 py-2 lg:py-4 text-[10px] lg:text-xs uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold text-right w-[25%]">Price</th>
+                        <th className="px-2 lg:px-6 py-2 lg:py-4 text-sm uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold w-[30%]">Category</th>
+                        <th className="px-2 lg:px-6 py-2 lg:py-4 text-sm uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold w-[45%]">Selection</th>
+                        <th className="px-2 lg:px-6 py-2 lg:py-4 text-sm uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold text-right w-[25%]">Price</th>
                       </tr>
                     </thead>
                   </table>
@@ -193,9 +193,9 @@ function App() {
                     <tbody className="divide-y divide-white/5">
                       {getSelectedItems().map((item, idx) => (
                         <tr key={idx} className="hover:bg-white/5 transition-colors">
-                          <td className="px-2 lg:px-6 py-2 lg:py-4 text-xs lg:text-sm text-gray-400 w-[30%]">{item.label}</td>
-                          <td className="px-2 lg:px-6 py-2 lg:py-4 text-xs lg:text-sm font-medium text-white w-[45%] break-words">{item.name}</td>
-                          <td className="px-2 lg:px-6 py-2 lg:py-4 text-xs lg:text-sm font-mono text-right text-gray-300 w-[25%] whitespace-nowrap">
+                          <td className="px-2 lg:px-6 py-2 lg:py-4 text-sm text-gray-400 w-[30%]">{item.label}</td>
+                          <td className="px-2 lg:px-6 py-2 lg:py-4 text-sm font-medium text-white w-[45%] break-words">{item.name}</td>
+                          <td className="px-2 lg:px-6 py-2 lg:py-4 text-sm font-mono text-right text-gray-300 w-[25%] whitespace-nowrap">
                             {item.price > 0 ? `+${item.price} €` : (item.price === 0 ? 'Inc.' : `${item.price} €`)}
                           </td>
                         </tr>
@@ -217,7 +217,7 @@ function App() {
             {/* Footer */}
             <div className="p-4 lg:p-8 pt-3 lg:pt-4 shrink-0 border-t border-white/5 bg-slate-900/50 backdrop-blur-sm pb-safe">
               <div className="mb-4 lg:mb-6">
-                <label htmlFor="email" className="block text-[10px] lg:text-xs uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold mb-2 lg:mb-3">
+                <label htmlFor="email" className="block text-sm uppercase tracking-wider lg:tracking-widest text-gray-400 font-bold mb-2 lg:mb-3">
                   Your Email / Kontakt
                 </label>
                 <input
